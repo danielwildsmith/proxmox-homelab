@@ -1,0 +1,16 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - 8096:8096
+    volumes:
+      - ./jellyfin:/config
+      - ${MOVIES}:/data/movies
+      - ${TV}:/data/shows
+      - ${DOWNLOADS}:/data/downloads
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+    restart: unless-stopped
